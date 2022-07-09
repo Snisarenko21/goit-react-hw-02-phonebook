@@ -23,7 +23,7 @@ export class App extends Component {
       contact => contact.name.toLowerCase() === normalizedName
     );
     if (ifExist) {
-      Notify.failure(`${name} is already exist`, {
+      Notify.failure(`${name} is already in contacts`, {
         clickToClose: true,
         distance: '20px',
         fontFamily: 'inherit',
