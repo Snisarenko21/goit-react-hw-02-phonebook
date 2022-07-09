@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { Notify } from 'notiflix';
 import { nanoid } from 'nanoid';
 import Form from './Form';
 import ContactList from './ContactList';
@@ -15,21 +16,32 @@ export class App extends Component {
     ],
     filter: '',
   };
-  addContact = ({ contacts, id, name, number }) => {
+
+  addContact = ({ name, number }) => {
+    const normalizedName = name.toLowerCase();
+    const ifExist = this.state.contacts.some(
+      contact => contact.name.toLowerCase() === normalizedName
+    );
+    if (ifExist) {
+      Notify.failure(`${name} is already exist`, {
+        clickToClose: true,
+        distance: '20px',
+        fontFamily: 'inherit',
+      });
+      return;
+    }
+
     const contact = {
       id: nanoid(),
       name,
       number,
     };
-    this.setState(({ contacts }) => {
-      if (contacts.some(contact => contact.name === name)) {
-        return alert(`${contact.name} is already in contacts`);
-      }
-      return {
-        contacts: [contact, ...contacts],
-      };
-    });
+
+    this.setState(({ contacts }) => ({
+      contacts: [contact, ...contacts],
+    }));
   };
+
   changeFilter = e => {
     this.setState({ filter: e.currentTarget.value });
   };
