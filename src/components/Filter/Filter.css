@@ -1,6 +1,6 @@
 .Filter__label {
   font-size: 22px;
-  text-transform: capitalize;
+  text-transform: initial;
   display: flex;
   align-items: center;
   justify-content: space-between;
