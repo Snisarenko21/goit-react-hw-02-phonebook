@@ -11,13 +11,11 @@ class Form extends Component {
   handleChange = event => {
     const { name, value } = event.currentTarget;
     this.setState({
-      contacts: [this.state.name, this.state.number],
       [name]: value,
     });
   };
   handleSubmit = e => {
     e.preventDefault();
-    // console.log(this.state);
     this.props.onSubmit(this.state);
     this.resetForm();
   };
