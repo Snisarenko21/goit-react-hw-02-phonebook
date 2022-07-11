@@ -1,4 +1,4 @@
-.Filter__label {
+.FilterLabel {
   font-size: 22px;
   text-transform: initial;
   display: flex;
@@ -8,7 +8,7 @@
   color: rgb(94, 94, 155);
   margin-top: 20px;
 }
-.Filter__input {
+.FilterInput {
   height: 28px;
   font-size: 14px;
   color: rgb(94, 94, 155);

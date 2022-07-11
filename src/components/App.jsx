@@ -4,6 +4,7 @@ import { nanoid } from 'nanoid';
 import Form from './Form';
 import ContactList from './ContactList';
 import Filter from './Filter';
+import css from './App.module.css';
 
 export class App extends Component {
   state = {
@@ -52,9 +53,9 @@ export class App extends Component {
     );
   };
 
-  deleteContact = contactId => {
+  deleteContact = Id => {
     this.setState(prevState => ({
-      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
+      contacts: prevState.contacts.filter(contact => contact.id !== Id),
       filter: '',
     }));
   };
@@ -62,14 +63,14 @@ export class App extends Component {
     const { filter } = this.state;
     const visibleContacts = this.getVisibleContacts();
     return (
-      <div className="Container">
+      <div className={css.Container}>
         <h1>Phonebook</h1>
         <Form onSubmit={this.addContact} />
         <h2> Contacts : </h2>
         <Filter value={filter} onChange={this.changeFilter} />
         <ContactList
           contacts={visibleContacts}
-          onDeleteContactList={this.deleteContact}
+          onDeleteContact={this.deleteContact}
         />
       </div>
     );
